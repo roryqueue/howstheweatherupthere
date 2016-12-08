@@ -126,3 +126,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'test@gmail.com'
 EMAIL_HOST_PASSWORD = 'test'
 EMAIL_PORT = 587
+
+# Wunderground API settings:
+
+WUNDERGROUND_API_URL = 'https://www.wunderground.com/weather/api/'
+WUNDERGROUND_API_KEY = 'hash'
