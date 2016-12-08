@@ -1,7 +1,5 @@
 import traceback
-from datetime import datetime, timedelta
 from django.core.management.base import BaseCommand, CommandError
-from django.core.mail import send_mail
 import settings
 from weather_app.models import User, City, EmailMessage
 from lib.wunderground_api import TodaysWeather
@@ -17,22 +15,5 @@ class SendWeatherEmailsCommand(BaseCommand):
 
         for user in User.objects.all():
             todays_message = EmailMessage(recipient=user.email)
-
-            try:
-                successful_sends = send_mail(
-                    todays_message.subject,
-                    todays_message.body,
-                    settings.from_addr,
-                    [todays_message.recipient]
-                )
-                if successful_sends == 0:
-                    todays_message.success = False
-                    todays_message.error = """
-                        send_mail returned 0, indication no successful recipients
-                    """
-
-            except Exception as e:
-                todays_message.success = False
-                todays_message.error = str(e)
-                todays_message.traceback = traceback.print_exc()
-
+            todays_message.from_address = settings.EMAIL_HOST_USER
+            todays_message.send()
