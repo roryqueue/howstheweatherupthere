@@ -1,12 +1,11 @@
 import traceback
 from django.core.management.base import BaseCommand, CommandError
-import settings
 from weather_app.models import User, City, EmailMessage
 from lib.wunderground_api import TodaysWeather
 
 
-class SendWeatherEmailsCommand(BaseCommand):
-    help = 'Sends daily weather alert email messages to all users in database'
+class Command(BaseCommand):
+    help = 'Loads city, state, and state abbreviation data from uncleaned text files to db'
 
     def add_arguments(self, parser):
         parser.add_argument('only_to', nargs='*', type=str)

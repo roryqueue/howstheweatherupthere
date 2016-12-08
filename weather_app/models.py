@@ -1,19 +1,18 @@
 from django.db import models
 from django.core.mail import send_mail
 
-# Create your models here.
 
 class Location(models.Model):
-    city = models.TextField(null=False, blank=True)
-    state = models.TextField(null=False, blank=True)
-    wunderground_url_format = models.TextField(null=False, blank=True)
+    city = models.TextField(null=False, blank=False, unique=True)
+    state = models.TextField(null=False, blank=False)
+    state_abbreviation = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)  
 
 
 class User(models.Model):
     email = models.TextField(null=False, blank=False)
-    password = models.TextField(null=False, blank=False)
+    active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     location = models.ForeignKey(Location, null=True, on_delete=models.SET_NULL)
