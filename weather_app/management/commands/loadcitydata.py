@@ -1,5 +1,3 @@
-import traceback
-from pprint import pprint
 from django.core.management.base import BaseCommand, CommandError
 from django.db.utils import IntegrityError
 from weather_app.models import Location
@@ -14,7 +12,7 @@ class Command(BaseCommand):
         locations = self.load_initial_locations()
         abbreviations = self.load_state_abbreviations()
         self.match_state_abbreviations(locations, abbreviations)
-        pprint([row.__dict__ for row in Location.objects.all()])
+        print([row.__dict__ for row in Location.objects.all()])
 
     def load_initial_locations(self):
         population_rank_counter = 1

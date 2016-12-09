@@ -1,7 +1,6 @@
-import traceback
 from django.core.management.base import BaseCommand, CommandError
 from django.template import loader, Context
-from weather_app.models import User, Location, EmailMessage
+from weather_app.models import User, EmailMessage
 from weather_app.wunderground_api import TodaysWeather
 from weather_app import settings
 

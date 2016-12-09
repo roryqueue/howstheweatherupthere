@@ -1,5 +1,4 @@
 import requests, traceback
-from json.decoder import JSONDecodeError
 from datetime import datetime, timedelta
 from weather_app.settings import WUNDERGROUND_API_URL, WUNDERGROUND_API_KEY
 
