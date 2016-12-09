@@ -7,8 +7,8 @@ from weather_app.models import Location
 
 class Command(BaseCommand):
     help = 'Sends daily weather alert email messages to all users in database'
-    raw_cities_file = 'static_data/cities_starting_file.txt'
-    raw_abbreviations_file = 'static_data/state_abbreviations.txt'
+    RAW_CITIES_FILEPATH = 'static_data/cities_starting_file.txt'
+    RAW_ABBREVIATIONS_FILEPATH = 'static_data/state_abbreviations.txt'
 
     def handle(self, *args, **options):
         locations = self.load_initial_locations()
@@ -18,7 +18,7 @@ class Command(BaseCommand):
 
     def load_initial_locations(self):
         population_rank_counter = 1
-        cities_starting_file = open(self.raw_cities_file, 'r')
+        cities_starting_file = open(self.RAW_CITIES_FILEPATH, 'r')
 
         next_line = None
         # loop until we have our tow 100 cities or the file ends
@@ -41,7 +41,7 @@ class Command(BaseCommand):
 
     def load_state_abbreviations(self):
         state_abbreviations = {}
-        for line in open(self.raw_abbreviations_file, 'r'):
+        for line in open(self.RAW_ABBREVIATIONS_FILEPATH, 'r'):
             split_line = line.strip().split('  ')
             name = split_line[0].strip()
             abbreviation = split_line[-1].strip()
