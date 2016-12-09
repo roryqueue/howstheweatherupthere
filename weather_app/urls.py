@@ -19,5 +19,6 @@ from weather_app import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^success', views.subscription_success, name='subscription_success'),
     url(r'^$', views.user_new, name='user_new'),
 ]
