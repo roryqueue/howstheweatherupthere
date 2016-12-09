@@ -10,4 +10,5 @@ def user_new(request):
             return redirect('/')
     else:
         form = UserForm()
+
     return render(request, 'user_create.html', {'form': form})
