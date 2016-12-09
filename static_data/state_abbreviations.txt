@@ -51,9 +51,9 @@ Tennessee  Tenn.  TN
 Texas  Tex.  TX
 Utah  Utah  UT
 Vermont  Vt. VT
-Virginia  Va. VA
+Virginia  Va.  VA
 Virgin Islands  V.I.  VI
-Washington  Wash. WA
+Washington  Wash.  WA
 West Virginia  W.Va.  WV
 Wisconsin  Wis.  WI
 Wyoming  Wyo.  WY
