@@ -28,7 +28,7 @@ class User(models.Model):
 class EmailMessage(models.Model):
     subject = models.TextField(null=False, blank=True)
     text = models.TextField(null=False, blank=True)
-    html = models.TextField(null=False, blank=True)
+    html = models.TextField(null=True)
     from_address = models.TextField(null=False, blank=False)
     successful = models.BooleanField(default=False)
     error = models.TextField(null=True)
@@ -48,9 +48,7 @@ class EmailMessage(models.Model):
             )
             if successful_sends == 0:
                 self.success = False
-                self.error = """
-                    send_mail returned 0, indication no successful recipients
-                """
+                self.error = "send_mail returned 0, indication no successful recipients"
 
         except Exception as e:
             self.success = False
