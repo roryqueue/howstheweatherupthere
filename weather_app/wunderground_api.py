@@ -1,7 +1,6 @@
 import requests
 from datetime import datetime, timedelta
-from .models import City
-from settings import WUNDERGROUND_API_URL, WUNDERGROUND_API_KEY
+from weather_app.settings import WUNDERGROUND_API_URL, WUNDERGROUND_API_KEY
 
 class TodaysWeather(object):
   

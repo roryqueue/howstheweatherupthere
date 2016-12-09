@@ -6,7 +6,7 @@ def user_new(request):
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
+            user = form.save(commit=True)
             return redirect('/')
     else:
         form = UserForm()

@@ -1,8 +1,8 @@
 import traceback
 from django.core.management.base import BaseCommand, CommandError
-from weather_app.models import User, City, EmailMessage
-from lib.wunderground_api import TodaysWeather
-
+from weather_app.models import User, Location, EmailMessage
+from weather_app.wunderground_api import TodaysWeather
+from weather_app import settings
 
 class Command(BaseCommand):
     help = 'Loads city, state, and state abbreviation data from uncleaned text files to db'
@@ -13,6 +13,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         for user in User.objects.all():
-            todays_message = EmailMessage(recipient=user.email)
+            todays_message = EmailMessage(recipient=user)
             todays_message.from_address = settings.EMAIL_HOST_USER
             todays_message.send()

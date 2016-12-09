@@ -1,3 +1,4 @@
+import traceback
 from django.db import models
 from django.core.mail import send_mail
 
@@ -30,8 +31,8 @@ class EmailMessage(models.Model):
     body = models.TextField(null=False, blank=True)
     from_address = models.TextField(null=False, blank=False)
     successful = models.BooleanField(default=False)
-    error = models.TextField()
-    traceback = models.TextField()
+    error = models.TextField(null=True)
+    traceback = models.TextField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     recipient = models.ForeignKey(User, on_delete=models.CASCADE)
