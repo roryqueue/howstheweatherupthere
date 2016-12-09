@@ -27,7 +27,8 @@ class User(models.Model):
 
 class EmailMessage(models.Model):
     subject = models.TextField(null=False, blank=True)
-    body = models.TextField(null=False, blank=True)
+    text = models.TextField(null=False, blank=True)
+    html = models.TextField(null=False, blank=True)
     from_address = models.TextField(null=False, blank=False)
     successful = models.BooleanField(default=False)
     error = models.TextField(null=True)
@@ -40,9 +41,10 @@ class EmailMessage(models.Model):
         try:
             successful_sends = send_mail(
                 self.subject,
-                self.body,
+                self.text,
                 self.from_address,
-                [self.recipient.email]
+                [self.recipient.email],
+                html_message=self.html
             )
             if successful_sends == 0:
                 self.success = False
