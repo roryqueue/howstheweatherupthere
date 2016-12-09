@@ -8,10 +8,17 @@ class Location(models.Model):
     state_abbreviation = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)  
+    
+    def __str__(self):
+        return '{}, {}'.format(self.city, self.state_abbreviation)
+
+
+    class Meta:
+        ordering = ('city',)
 
 
 class User(models.Model):
-    email = models.TextField(null=False, blank=False)
+    email = models.CharField(max_length=100, null=False, blank=False)
     active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
