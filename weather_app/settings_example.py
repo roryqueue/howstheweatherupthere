@@ -135,3 +135,6 @@ EMAIL_PORT = 587
 
 WUNDERGROUND_API_URL = 'https://www.wunderground.com/weather/api/'
 WUNDERGROUND_API_KEY = 'hash'
+
+
+APPEND_SLASH = True
