@@ -98,12 +98,3 @@ class TodaysWeather(object):
             print('response_json: ' + str(response_json))
             traceback.print_exc()
             raise
-
-
-
-
-
-
-
-
-

@@ -53,21 +53,3 @@ class Command(BaseCommand):
         for location in locations:
             location.state_abbreviation = abbreviations[location.state]
             location.save()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
