@@ -13,14 +13,13 @@ class Location(models.Model):
     def __str__(self):
         return '{}, {}'.format(self.city, self.state_abbreviation)
 
-
     class Meta:
         ordering = ('city',)
 
 
 class User(models.Model):
     email = models.CharField(max_length=100, null=False, blank=False)
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     location = models.ForeignKey(Location, null=True, on_delete=models.SET_NULL)
@@ -43,7 +42,7 @@ class EmailMessage(models.Model):
                 self.subject,
                 self.body,
                 self.from_address,
-                [self.recipient]
+                [self.recipient.email]
             )
             if successful_sends == 0:
                 self.success = False
