@@ -25,7 +25,6 @@ class TodaysWeather(object):
 
     def fetch_current_weather(self, location):
         response = self.make_request(location, endpoint='conditions')
-        print(response)
         current_weather = response['current_observation']
         location_weather_report = {
             'weather_phrase': current_weather['weather'],

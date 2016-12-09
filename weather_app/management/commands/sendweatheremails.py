@@ -25,13 +25,23 @@ class Command(BaseCommand):
             email_message.from_address = settings.EMAIL_HOST_USER
             users_weather = todays_weather.find_for_location(user.location)
             email_message.subject = self.EMAIL_SUBJECTS[users_weather['weather_qualitative']]
-            email_message.body = self.render_email_body(user.location, users_weather)
+            email_message.text =\
+"""Hello!
+The current weather in {city}, {state} is {temperature} degrees, {description}.
+Have a great day!""".format(
+                city=user.location.city,
+                state=user.location.state,
+                temperature=str(users_weather['temperature']),
+                description=users_weather['weather_phrase']
+            )
+            email_message.html = self.render_email_html(user.location, users_weather)
             email_message.send()
 
-    def render_email_body(self, location, weather):
+    def render_email_html(self, location, weather):
         template = loader.get_template(self.EMAIL_TEMPLATE_PATH)
         context = Context({
-            'location': location.city + ', ' + location.state,
+            'city': location.city,
+            'state': location.state,
             'description': weather['weather_phrase'],
             'temperature': weather['temperature'],
             'image_url': weather['icon_url']
