@@ -18,7 +18,7 @@ class Location(models.Model):
 
 
 class User(models.Model):
-    email = models.CharField(max_length=100, null=False, blank=False)
+    email = models.EmailField(null=False, blank=False, unique=True)
     active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
