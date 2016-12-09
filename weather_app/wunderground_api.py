@@ -27,8 +27,8 @@ class TodaysWeather(object):
         response = self.make_request(location, endpoint='conditions')
         current_weather = response['current_observation']
         location_weather_report = {
-            'weather_phrase': current_weather['weather'],
-            'temperature': current_weather['temp_f'],
+            'weather_phrase': current_weather['weather'].lower(),
+            'temperature': int(current_weather['temp_f']),
             'icon_url': current_weather['icon_url'],
             'precipitation_inches': float(current_weather['precip_1hr_in'])
         }
@@ -87,6 +87,9 @@ class TodaysWeather(object):
             )
             response = requests.get(api_url)
             response_json = response.json()
+            if not response_json:
+                raise Exception
+
             return response_json
 
         except Exception as e:

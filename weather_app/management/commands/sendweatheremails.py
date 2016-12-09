@@ -27,7 +27,7 @@ class Command(BaseCommand):
             email_message.subject = self.EMAIL_SUBJECTS[users_weather['weather_qualitative']]
             email_message.text =\
 """Hello!
-The current weather in {city}, {state} is {temperature} degrees, {description}.
+The current weather in {city}, {state} is {description} and {temperature} degrees.
 Have a great day!""".format(
                 city=user.location.city,
                 state=user.location.state,
